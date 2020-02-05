@@ -1,4 +1,4 @@
-import { ADD_FEATURE, REMOVER_FEATURE } from '../actions/buttonActions';
+import { ADD_FEATURE, REMOVE_FEATURE } from '../actions/buttonActions';
 
 const initialState = {
   price: 26395,
@@ -15,7 +15,7 @@ const carSalesReducer = (state = initialState, action) => {
         ...state,
         features: [...state.features, action.payload]
       };
-    case REMOVER_FEATURE:
+    case REMOVE_FEATURE:
       return {
         ...state,
         features: state.features.filter(

@@ -1,4 +1,4 @@
-import { ADD_FEATURE, REMOVER_FEATURE } from '../actions/buttonActions';
+import { ADD_FEATURE, REMOVE_FEATURE } from '../actions/buttonActions';
 
 const initialState = [
   { id: 1, name: 'V-6 engine', price: 1500 },
@@ -10,8 +10,8 @@ const initialState = [
 const storeReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FEATURE:
-      return state.filter(feature => feature.id != action.payload.id);
-    case REMOVER_FEATURE:
+      return state.filter(feature => feature.id !== action.payload.id);
+    case REMOVE_FEATURE:
       return [...state, action.payload];
     default:
       return state;
