@@ -1,23 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Header = props => {
+  const name = useSelector(state => state.car.name);
+  const image = useSelector(state => state.car.image);
+  const price = useSelector(state => state.car.price);
   console.log(props);
   return (
     <>
       <figure className="image">
-        <img src={props.car.image} alt={props.car.name} />
+        <img src={image} alt={name} />
       </figure>
-      <h2>{props.car.name}</h2>
-      <p>Amount: ${props.car.price}</p>
+      <h2>{name}</h2>
+      <p>Amount: ${price}</p>
     </>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    car: state.carSalesReducer
-  };
-};
-
-export default connect(mapStateToProps, {})(Header);
+export default Header;

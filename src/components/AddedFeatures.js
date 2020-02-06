@@ -1,25 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AddedFeature from './AddedFeature';
-import { removeFeature, removeFeaturePrice } from '../actions/buttonActions';
 
 const AddedFeatures = props => {
-  const removerFeatureHandler = feature => {
-    props.reoverFeature(feature);
-    props.reoveFeaturePrice(feature.price);
-  };
-
+  const features = useSelector(state => state.car.features);
   return (
     <div className="content">
       <h6>Added features:</h6>
-      {props.car.features.length ? (
+      {features.length ? (
         <ol type="1">
-          {props.car.features.map(item => (
-            <AddedFeature
-              key={item.id}
-              feature={item}
-              removerFeature={removerFeatureHandler}
-            />
+          {features.map(item => (
+            <AddedFeature key={item.id} feature={item} />
           ))}
         </ol>
       ) : (
@@ -29,12 +20,4 @@ const AddedFeatures = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    car: state.carSaleReducer
-  };
-};
-
-export default connect(mapStateToProps, { removeFeature, removeFeaturePrice })(
-  AddedFeatures
-);
+export default AddedFeatures;
